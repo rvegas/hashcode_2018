@@ -70,5 +70,27 @@ func parseFirstRow(input string) {
 }
 
 func parseRides(input string) {
+	parts := strings.Split(input, " ")
+	startRow, _ := strconv.Atoi(parts[0])
+	startColumn, _ := strconv.Atoi(parts[1])
+	endRow, _ := strconv.Atoi(parts[2])
+	endColumn, _ := strconv.Atoi(parts[3])
+	earlyStep, _ := strconv.Atoi(parts[4])
+	lateStep, _ := strconv.Atoi(parts[5])
 
+	startPosition := Position{
+		row:    startRow,
+		column: startColumn,
+	}
+	finishPosition := Position{
+		row:    endRow,
+		column: endColumn,
+	}
+
+	rides = append(rides, Ride{
+		start:  startPosition,
+		finish: finishPosition,
+		early:  earlyStep,
+		late:   lateStep,
+	})
 }
