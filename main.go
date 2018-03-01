@@ -5,6 +5,7 @@ import (
 	"flag"
 	"io"
 	"log"
+	"math"
 	"os"
 	"strconv"
 	"strings"
@@ -57,6 +58,10 @@ func parseInput(file io.Reader) {
 
 		lineNumber++
 	}
+
+	log.Printf("Initial setup is: %d rows, %d cols, %d cars, %d totalRides, %d bonus, %d steps\n", rows, columns, fleet, totalRides, bonus, steps)
+	log.Println("Individual rides are as follows:")
+	log.Println(rides)
 }
 
 func parseFirstRow(input string) {
@@ -93,4 +98,10 @@ func parseRides(input string) {
 		early:  earlyStep,
 		late:   lateStep,
 	})
+}
+
+func distance(pointA, pointB Position) int {
+	distCol := pointA.column - pointB.column
+	distRow := pointA.row - pointB.row
+	return int(math.Abs(float64(distCol) + float64(distRow)))
 }
